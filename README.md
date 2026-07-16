@@ -88,8 +88,7 @@ Quantum_Tomography_project
 
 │   └── visualize.py
 
-├── results/
-    └── figures/
+└── results/
 
 ## Usage
 The repository is run through *main.py*, with a command-line stage selector that chooses which part of the project to execute. Python's *argparse* module is designed for this kind of staged command-line interface.
