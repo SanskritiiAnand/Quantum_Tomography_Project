@@ -28,6 +28,7 @@ The 6 target states are:
 * |->
 * |i+>
 * |i->
+
 This stage establishes the baseline tomography pipeline in the absence of hardware noise, allowing the reconstruction and visualization workflow to be validated first under ideal conditions.
 
 ### Stage-2: Bell-state Tomography
@@ -37,6 +38,7 @@ The 4 bell-states studies are:
 * ∣ϕ−⟩
 * ∣ψ+⟩
 * ∣𝜓−⟩
+
 This stage tests whether the same reconstruction pipeline remains reliable when moving from single-qubit states to entagled two-qubit states.
 
 ### Stage-3: Readout Calibration
