@@ -8,10 +8,14 @@ class experiment_config:
 
     #execution settings
     shots: int= 4096
+    tomography_shots: int = 4096
+    calibration_shots: int= 4096
     seed_simulator: int= 42
+    seed_transpiler: int=42
 
     #backend mode: "ideal" or "noisy"
     backend_mode: str= "ideal"
+    noisy_backend: str = "FakeBrisbane"
 
     #fitter choice (tomography analysis)
     fitter: str= "linear_inversion"
@@ -24,6 +28,12 @@ class experiment_config:
     #calibration/mitigation flags
     enable_readout_calibration: bool=False
     enable_noise_model: bool=False
+    enable_mitigation: bool=False
+
+    #stage 4 comparison branches
+    run_ideal_branch: bool= True
+    run_noisy_branch: bool= True
+    run_calibrated_branch: bool= True
 
     #paths
     project_root: Path= Path(__file__).resolve().parent.parent
@@ -32,7 +42,7 @@ class experiment_config:
     figures_dir: Path= field(init= False)
     data_dir: Path= field(init= False)
 
-    def post_init(self):
+    def __post_init__(self):
         self.src_dir = self.project_root / "src"
         self.results_dir = self.project_root / "results"
         self.figures_dir = self.results_dir / "figures"
@@ -59,4 +69,42 @@ class experiment_config:
         if self.num_qubits < 1:
             raise ValueError("num_qubits must be at least 1")
         
-CONFIG = experiment_config
+        if self.seed_simulator < 0:
+            raise ValueError("seed_simulator must be non-negative")
+        
+        if self.seed_transpiler < 0:
+            raise ValueError("seed_transpiler must be non-negative")
+        
+        if self.shots < 1:
+            raise ValueError("shots must be at least 1")
+        
+        if self.tomography_shots < 1:
+            raise ValueError("tomography_shots must  be at least 1")
+        
+        if self.calibration_shots < 1: 
+            raise ValueError("calibration_shots must be at least 1")
+        
+        if not self.target_states:
+            raise ValueError("target_states must contain at least 1 state")
+        
+        if self.backend_mode == "ideal" and self.enable_noise_model:
+            raise ValueError("enable_noise_model cannot be True when backend_mode = 'ideal'. ")
+        
+        if self.enable_mitigation and not self.enable_readout_calibration:
+            raise ValueError("enable_mitigation = True requires enable_readout_calibration= True")
+        
+        if self.stage == 4:
+            if not (self.run_ideal_branch or self.run_noisy_branch or self.run_calibrated_branch):
+                raise ValueError("For stage 4, at least one comparison branch  must be enabled")
+            
+            if self.run_calibrated_branch:
+                if self.backend_mode != "noisy":
+                    raise ValueError("Calibrated branch requires backend_mode = 'noisy'")
+                
+                if not self.enable_readout_calibration:
+                    raise ValueError("calibrated branch requires enablr_readout_calibration = True")
+                
+                if not self.enable_mitigation:
+                    raise ValueError("Calibrated branch requires enable_mitigation = True")
+        
+CONFIG = experiment_config()
