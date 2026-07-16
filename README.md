@@ -6,7 +6,7 @@ The central goal of the project is to answer a practical quantum information que
 *Given only measurement outcomes, how accurately can a prepared quantum state be reconstructed, and how does readout calibration affect the quality of that reconstruction?*
 The repository approaches this through a four-staged pipeline that begins with ideal single-qubit and bell-state tomography, then introduces readout calibration and noisy-backend comparisons.
 
-##Methodology
+## Methodology
 This project follows a four-stage, eight-module architecture built around preparation, execution, reconstruction, metric evaluation, and visualization.
 Across the stages, the workflow uses quantum state tomography to reconstruct density matrices, fidelity, purity, and trace metrics to evaluate reconstruction quality, and assignment matrices to characterize readout behaviour.
 
@@ -69,15 +69,25 @@ These outputs are  meant to make the project interpretable both numerically and 
 A typical repository structre for this project is organized around state preparation, execution, reconstruction, metrics, calibration, visualisation, and the main entrypoint.
 
 Quantum_Tomography_project
+
 ├── main.py
+
 ├── src/
+
 │   ├── calibration.py
+
 │   ├── config.py
+
 │   ├── executor.py
+
 │   ├── metrics.py
+
 │   ├── reconstruct.py
+
 │   ├── states.py
+
 │   └── visualize.py
+
 ├── results/
     └── figures/
 
