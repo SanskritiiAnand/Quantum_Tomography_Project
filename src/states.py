@@ -34,7 +34,7 @@ def single_qubit_state(state_name: str):
 
     return qc, ref_sv, ref_dm
 
-def bell_state(state_name: str = "phi_plus"):
+def bell_state(state_name: str):
     """
     Return: 
     circuit: QuantumCircuit that prepares the bell state
