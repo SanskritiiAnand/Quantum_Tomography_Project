@@ -57,7 +57,7 @@ def run_tomography_suite(state_names, state_builder, suite_label):
                             })
         last_density_plot_path= densitymatrix_plot(reconstructd_dm, state_name)
 
-    return summary_rows
+    return summary_rows, last_density_plot_path
 
 def print_summary(summary_rows, heading):
     print("\n"+"="*60)
