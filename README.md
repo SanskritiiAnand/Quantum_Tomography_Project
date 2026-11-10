@@ -22,22 +22,22 @@ At a high level, the repository proceeds as follows:
 ### Stage 1: Single-qubit Tomography
 Performs quantum state tomography for six known single-qubit states on an ideal simulator. The outputs from this stage include reconstructed density matrices for all six states and a fidelity bar chart summarizing reconstruction quality across the single-qubit set.
 The 6 target states are: 
-* \(|0\rangle\)
-* \(|1\rangle\)
-* \(|+\rangle\)
-* \(|-\rangle\)
-* \(|+i\rangle\)
-* \(|-i\rangle\)
+* $|0\rangle$
+* $|1\rangle$
+* $|+\rangle$
+* $|-\rangle$
+* $|+i\rangle$
+* $|-i\rangle$
 
 This stage establishes the baseline tomography pipeline in the absence of hardware noise, allowing the reconstruction and visualization workflow to be validated first under ideal conditions.
 
 ### Stage 2: Bell-state Tomography
 Extends the tomography workflow to two-qubit entangled states on an ideal simulator. It reconstructs the density matrices of four known Bell states and produces individual density-matrix visualizations and a summary fidelity bar chart.
 The 4 bell-states studies are:
-* \(|\Phi^+\rangle\)
-* \(|\Phi^-\rangle\)
-* \(|\Psi^+\rangle\)
-* \(|\Psi^-\rangle\)
+* $|\Phi^+\rangle$
+* $|\Phi^-\rangle$
+* $|\Psi^+\rangle$
+* $|\Psi^-\rangle$
 
 This stage tests whether the same reconstruction pipeline remains reliable when moving from single-qubit states to entangled two-qubit states.
 
